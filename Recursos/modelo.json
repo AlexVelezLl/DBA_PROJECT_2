@@ -1,0 +1,140 @@
+{
+  "uuid": "e225a4fc-3bda-394b-5465-51df24fbf69c",
+  "last_modified": 1643575256297,
+  "version": "3.0.0.20500",
+  "name": "adventureworksdw_model",
+  "owner": "ADMIN",
+  "is_draft": false,
+  "description": "",
+  "fact_table": "ADVENTUREWORKSDW.FACTINTERNETSALES",
+  "fact_table_alias": "FACTINTERNETSALES",
+  "lookups": [
+    {
+      "table": "ADVENTUREWORKSDW.DIMCUSTOMER",
+      "kind": "LOOKUP",
+      "alias": "DIMCUSTOMER",
+      "join": {
+        "type": "inner",
+        "primary_key": [
+          "DIMCUSTOMER.CUSTOMERKEY"
+        ],
+        "foreign_key": [
+          "FACTINTERNETSALES.CUSTOMERKEY"
+        ]
+      }
+    },
+    {
+      "table": "ADVENTUREWORKSDW.DIMCURRENCY",
+      "kind": "LOOKUP",
+      "alias": "DIMCURRENCY",
+      "join": {
+        "type": "inner",
+        "primary_key": [
+          "DIMCURRENCY.CURRENCYKEY"
+        ],
+        "foreign_key": [
+          "FACTINTERNETSALES.CURRENCYKEY"
+        ]
+      }
+    },
+    {
+      "table": "ADVENTUREWORKSDW.DIMSALESTERRITORY",
+      "kind": "LOOKUP",
+      "alias": "DIMSALESTERRITORY",
+      "join": {
+        "type": "inner",
+        "primary_key": [
+          "DIMSALESTERRITORY.SALESTERRITORYKEY"
+        ],
+        "foreign_key": [
+          "FACTINTERNETSALES.SALESTERRITORYKEY"
+        ]
+      }
+    },
+    {
+      "table": "ADVENTUREWORKSDW.DIMDATE",
+      "kind": "LOOKUP",
+      "alias": "DIMDATE",
+      "join": {
+        "type": "inner",
+        "primary_key": [
+          "DIMDATE.DATEKEY"
+        ],
+        "foreign_key": [
+          "FACTINTERNETSALES.ORDERDATEKEY"
+        ]
+      }
+    }
+  ],
+  "dimensions": [
+    {
+      "table": "FACTINTERNETSALES",
+      "columns": [
+        "CUSTOMERKEY",
+        "CURRENCYKEY",
+        "SALESTERRITORYKEY",
+        "ORDERDATEKEY"
+      ]
+    },
+    {
+      "table": "DIMCUSTOMER",
+      "columns": [
+        "CUSTOMERKEY",
+        "GENDER",
+        "BIRTHDATE",
+        "LASTNAME",
+        "FIRSTNAME",
+        "YEARLYINCOME",
+        "ENGLISHOCCUPATION"
+      ]
+    },
+    {
+      "table": "DIMCURRENCY",
+      "columns": [
+        "CURRENCYKEY",
+        "CURRENCYNAME"
+      ]
+    },
+    {
+      "table": "DIMSALESTERRITORY",
+      "columns": [
+        "SALESTERRITORYKEY",
+        "SALESTERRITORYREGION",
+        "SALESTERRITORYCOUNTRY",
+        "SALESTERRITORYGROUP"
+      ]
+    },
+    {
+      "table": "DIMDATE",
+      "columns": [
+        "DATEKEY",
+        "DAYNUMBEROFMONTH",
+        "MONTHNUMBEROFYEAR",
+        "CALENDARQUARTER",
+        "CALENDARSEMESTER",
+        "CALENDARYEAR",
+        "ENGLISHDAYNAMEOFWEEK",
+        "DAYNUMBEROFWEEK",
+        "ENGLISHMONTHNAME"
+      ]
+    }
+  ],
+  "metrics": [
+    "FACTINTERNETSALES.TAXAMT",
+    "FACTINTERNETSALES.SALESAMOUNT",
+    "FACTINTERNETSALES.DISCOUNTAMOUNT",
+    "FACTINTERNETSALES.ORDERQUANTITY"
+  ],
+  "filter_condition": "",
+  "partition_desc": {
+    "partition_date_column": null,
+    "partition_time_column": null,
+    "partition_date_start": 0,
+    "partition_date_format": "yyyy-MM-dd",
+    "partition_time_format": "HH:mm:ss",
+    "partition_type": "APPEND",
+    "partition_condition_builder": "org.apache.kylin.metadata.model.PartitionDesc$DefaultPartitionConditionBuilder"
+  },
+  "capacity": "MEDIUM",
+  "projectName": "BDA_Kylin"
+}

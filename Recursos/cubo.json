@@ -1,0 +1,390 @@
+{
+  "uuid": "746673a0-252e-b5d8-fa3b-97db9cd990fe",
+  "last_modified": 1643576937647,
+  "version": "3.0.0.20500",
+  "name": "adventureworksdw_cube",
+  "is_draft": false,
+  "model_name": "adventureworksdw_model",
+  "description": "",
+  "null_string": null,
+  "dimensions": [
+    {
+      "name": "ORDERDATEKEY",
+      "table": "FACTINTERNETSALES",
+      "column": "ORDERDATEKEY",
+      "derived": null
+    },
+    {
+      "name": "CUSTOMERKEY",
+      "table": "FACTINTERNETSALES",
+      "column": "CUSTOMERKEY",
+      "derived": null
+    },
+    {
+      "name": "CURRENCYKEY",
+      "table": "FACTINTERNETSALES",
+      "column": "CURRENCYKEY",
+      "derived": null
+    },
+    {
+      "name": "SALESTERRITORYKEY",
+      "table": "FACTINTERNETSALES",
+      "column": "SALESTERRITORYKEY",
+      "derived": null
+    },
+    {
+      "name": "CUSTOMERKEY",
+      "table": "DIMCUSTOMER",
+      "column": null,
+      "derived": [
+        "CUSTOMERKEY"
+      ]
+    },
+    {
+      "name": "GENDER",
+      "table": "DIMCUSTOMER",
+      "column": "GENDER",
+      "derived": null
+    },
+    {
+      "name": "YEARLYINCOME",
+      "table": "DIMCUSTOMER",
+      "column": "YEARLYINCOME",
+      "derived": null
+    },
+    {
+      "name": "ENGLISHOCCUPATION",
+      "table": "DIMCUSTOMER",
+      "column": "ENGLISHOCCUPATION",
+      "derived": null
+    },
+    {
+      "name": "CURRENCYKEY",
+      "table": "DIMCURRENCY",
+      "column": null,
+      "derived": [
+        "CURRENCYKEY"
+      ]
+    },
+    {
+      "name": "CURRENCYNAME",
+      "table": "DIMCURRENCY",
+      "column": null,
+      "derived": [
+        "CURRENCYNAME"
+      ]
+    },
+    {
+      "name": "SALESTERRITORYKEY",
+      "table": "DIMSALESTERRITORY",
+      "column": null,
+      "derived": [
+        "SALESTERRITORYKEY"
+      ]
+    },
+    {
+      "name": "SALESTERRITORYREGION",
+      "table": "DIMSALESTERRITORY",
+      "column": "SALESTERRITORYREGION",
+      "derived": null
+    },
+    {
+      "name": "SALESTERRITORYCOUNTRY",
+      "table": "DIMSALESTERRITORY",
+      "column": "SALESTERRITORYCOUNTRY",
+      "derived": null
+    },
+    {
+      "name": "SALESTERRITORYGROUP",
+      "table": "DIMSALESTERRITORY",
+      "column": "SALESTERRITORYGROUP",
+      "derived": null
+    },
+    {
+      "name": "DATEKEY",
+      "table": "DIMDATE",
+      "column": null,
+      "derived": [
+        "DATEKEY"
+      ]
+    },
+    {
+      "name": "DAYNUMBEROFWEEK",
+      "table": "DIMDATE",
+      "column": "DAYNUMBEROFWEEK",
+      "derived": null
+    },
+    {
+      "name": "ENGLISHDAYNAMEOFWEEK",
+      "table": "DIMDATE",
+      "column": "ENGLISHDAYNAMEOFWEEK",
+      "derived": null
+    },
+    {
+      "name": "DAYNUMBEROFMONTH",
+      "table": "DIMDATE",
+      "column": "DAYNUMBEROFMONTH",
+      "derived": null
+    },
+    {
+      "name": "MONTHNUMBEROFYEAR",
+      "table": "DIMDATE",
+      "column": "MONTHNUMBEROFYEAR",
+      "derived": null
+    },
+    {
+      "name": "CALENDARYEAR",
+      "table": "DIMDATE",
+      "column": "CALENDARYEAR",
+      "derived": null
+    }
+  ],
+  "measures": [
+    {
+      "name": "_COUNT_",
+      "function": {
+        "expression": "COUNT",
+        "parameter": {
+          "type": "constant",
+          "value": "1"
+        },
+        "returntype": "bigint"
+      }
+    },
+    {
+      "name": "TOTAL_SALES_AMOUNT",
+      "function": {
+        "expression": "SUM",
+        "parameter": {
+          "type": "column",
+          "value": "FACTINTERNETSALES.SALESAMOUNT"
+        },
+        "returntype": "decimal(19,4)"
+      }
+    },
+    {
+      "name": "TOTAL_DISCOUNT_AMOUNT",
+      "function": {
+        "expression": "SUM",
+        "parameter": {
+          "type": "column",
+          "value": "FACTINTERNETSALES.DISCOUNTAMOUNT"
+        },
+        "returntype": "double"
+      }
+    },
+    {
+      "name": "TOTAL_ORDER_QUANTITY",
+      "function": {
+        "expression": "SUM",
+        "parameter": {
+          "type": "column",
+          "value": "FACTINTERNETSALES.ORDERQUANTITY"
+        },
+        "returntype": "bigint"
+      }
+    },
+    {
+      "name": "TOTAL_TAX_AMOUNT",
+      "function": {
+        "expression": "SUM",
+        "parameter": {
+          "type": "column",
+          "value": "FACTINTERNETSALES.TAXAMT"
+        },
+        "returntype": "decimal(19,4)"
+      }
+    },
+    {
+      "name": "MAX_SALES_AMOUNT",
+      "function": {
+        "expression": "MAX",
+        "parameter": {
+          "type": "column",
+          "value": "FACTINTERNETSALES.SALESAMOUNT"
+        },
+        "returntype": "decimal(19,4)"
+      }
+    }
+  ],
+  "dictionaries": [],
+  "rowkey": {
+    "rowkey_columns": [
+      {
+        "column": "FACTINTERNETSALES.ORDERDATEKEY",
+        "encoding": "dict",
+        "encoding_version": 1,
+        "isShardBy": false
+      },
+      {
+        "column": "FACTINTERNETSALES.CUSTOMERKEY",
+        "encoding": "dict",
+        "encoding_version": 1,
+        "isShardBy": false
+      },
+      {
+        "column": "FACTINTERNETSALES.CURRENCYKEY",
+        "encoding": "dict",
+        "encoding_version": 1,
+        "isShardBy": false
+      },
+      {
+        "column": "FACTINTERNETSALES.SALESTERRITORYKEY",
+        "encoding": "dict",
+        "encoding_version": 1,
+        "isShardBy": false
+      },
+      {
+        "column": "DIMCUSTOMER.GENDER",
+        "encoding": "dict",
+        "encoding_version": 1,
+        "isShardBy": false
+      },
+      {
+        "column": "DIMCUSTOMER.YEARLYINCOME",
+        "encoding": "dict",
+        "encoding_version": 1,
+        "isShardBy": false
+      },
+      {
+        "column": "DIMCUSTOMER.ENGLISHOCCUPATION",
+        "encoding": "dict",
+        "encoding_version": 1,
+        "isShardBy": false
+      },
+      {
+        "column": "DIMSALESTERRITORY.SALESTERRITORYREGION",
+        "encoding": "dict",
+        "encoding_version": 1,
+        "isShardBy": false
+      },
+      {
+        "column": "DIMSALESTERRITORY.SALESTERRITORYCOUNTRY",
+        "encoding": "dict",
+        "encoding_version": 1,
+        "isShardBy": false
+      },
+      {
+        "column": "DIMSALESTERRITORY.SALESTERRITORYGROUP",
+        "encoding": "dict",
+        "encoding_version": 1,
+        "isShardBy": false
+      },
+      {
+        "column": "DIMDATE.DAYNUMBEROFWEEK",
+        "encoding": "dict",
+        "encoding_version": 1,
+        "isShardBy": false
+      },
+      {
+        "column": "DIMDATE.ENGLISHDAYNAMEOFWEEK",
+        "encoding": "dict",
+        "encoding_version": 1,
+        "isShardBy": false
+      },
+      {
+        "column": "DIMDATE.DAYNUMBEROFMONTH",
+        "encoding": "dict",
+        "encoding_version": 1,
+        "isShardBy": false
+      },
+      {
+        "column": "DIMDATE.MONTHNUMBEROFYEAR",
+        "encoding": "dict",
+        "encoding_version": 1,
+        "isShardBy": false
+      },
+      {
+        "column": "DIMDATE.CALENDARYEAR",
+        "encoding": "dict",
+        "encoding_version": 1,
+        "isShardBy": false
+      }
+    ]
+  },
+  "hbase_mapping": {
+    "column_family": [
+      {
+        "name": "F1",
+        "columns": [
+          {
+            "qualifier": "M",
+            "measure_refs": [
+              "_COUNT_",
+              "TOTAL_SALES_AMOUNT",
+              "TOTAL_DISCOUNT_AMOUNT",
+              "TOTAL_ORDER_QUANTITY",
+              "TOTAL_TAX_AMOUNT",
+              "MAX_SALES_AMOUNT"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "aggregation_groups": [
+    {
+      "includes": [
+        "FACTINTERNETSALES.ORDERDATEKEY",
+        "FACTINTERNETSALES.CUSTOMERKEY",
+        "FACTINTERNETSALES.CURRENCYKEY",
+        "FACTINTERNETSALES.SALESTERRITORYKEY",
+        "DIMCUSTOMER.GENDER",
+        "DIMCUSTOMER.YEARLYINCOME",
+        "DIMCUSTOMER.ENGLISHOCCUPATION",
+        "DIMSALESTERRITORY.SALESTERRITORYREGION",
+        "DIMSALESTERRITORY.SALESTERRITORYCOUNTRY",
+        "DIMSALESTERRITORY.SALESTERRITORYGROUP",
+        "DIMDATE.DAYNUMBEROFWEEK",
+        "DIMDATE.ENGLISHDAYNAMEOFWEEK",
+        "DIMDATE.DAYNUMBEROFMONTH",
+        "DIMDATE.MONTHNUMBEROFYEAR",
+        "DIMDATE.CALENDARYEAR"
+      ],
+      "select_rule": {
+        "hierarchy_dims": [
+          [
+            "DIMDATE.DAYNUMBEROFMONTH",
+            "DIMDATE.MONTHNUMBEROFYEAR",
+            "DIMDATE.CALENDARYEAR"
+          ]
+        ],
+        "mandatory_dims": [],
+        "joint_dims": [
+          [
+            "DIMDATE.DAYNUMBEROFWEEK",
+            "DIMDATE.ENGLISHDAYNAMEOFWEEK"
+          ],
+          [
+            "FACTINTERNETSALES.SALESTERRITORYKEY",
+            "DIMSALESTERRITORY.SALESTERRITORYCOUNTRY",
+            "DIMSALESTERRITORY.SALESTERRITORYGROUP",
+            "DIMSALESTERRITORY.SALESTERRITORYREGION"
+          ]
+        ]
+      }
+    }
+  ],
+  "signature": "sPzcuZKHJODLXApLmXhtmg==",
+  "notify_list": [],
+  "status_need_notify": [
+    "ERROR",
+    "DISCARDED",
+    "SUCCEED"
+  ],
+  "partition_date_start": 0,
+  "partition_date_end": 3153600000000,
+  "auto_merge_time_ranges": [
+    604800000,
+    2419200000
+  ],
+  "volatile_range": 0,
+  "retention_range": 0,
+  "engine_type": 2,
+  "storage_type": 2,
+  "override_kylin_properties": {},
+  "cuboid_black_list": [],
+  "parent_forward": 3,
+  "mandatory_dimension_set_list": [],
+  "snapshot_table_desc_list": []
+}
